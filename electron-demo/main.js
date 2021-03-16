@@ -11,7 +11,7 @@ app.on('ready',()=>{
   //webPreferences 启用所有node方法可以在渲染进程使用
   mainWindow = new BrowserWindow({width:400,height:400,webPreferences:{ nodeIntegration:true}})   //设置打开的窗口大小
   // electron读取本地文件
-  mainWindow.loadFile('index.html')  //加载那个页面
+  mainWindow.loadFile('demo2.html')  //加载那个页面
 
   //监听关闭事件，把主窗口设置为null
   mainWindow.on('closed',()=>{
