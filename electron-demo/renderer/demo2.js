@@ -1,11 +1,17 @@
 //渲染进程公共
 const btn = this.document.querySelector("#btn")
-const BrowserWindow = require('electron').remote.BrowserWindow
+import { remote } from 'electron'
+const BrowserWindow = remote.BrowserWindow
+// const BrowserWindow = require('electron').remote.BrowserWindow
 
 window.onload = function (){
   btn.onclick = () =>{
     newWin = new BrowserWindow({
-      width:500,height:500
+      width:500,
+      height:500,
+      webPreferences: {
+          nodeIntegration: true
+      }
     })
   }
   newWin.loadFile('yellow.html')
