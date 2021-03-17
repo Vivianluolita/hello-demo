@@ -50,3 +50,8 @@ npx electron -v
 
 需要注意的是，Menu属于是主线程下的模块，所以只能在主线程中使用，这个要记清楚。
 
+> 创建右键菜单，需要监听contextmenu
+
+> 使用shell在浏览器打开,而不是electron内置浏览器打开
+
+```shell.openExternal()```

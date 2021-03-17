@@ -16,7 +16,7 @@ app.on('ready',()=>{
   mainWindow.webContents.openDevTools()
   require('./main/menu.js')
   // electron读取本地文件
-  mainWindow.loadFile('demo2.html')  //加载那个页面
+  mainWindow.loadFile('demo3.html')  //加载那个页面
 
   //监听关闭事件，把主窗口设置为null
   mainWindow.on('closed',()=>{
