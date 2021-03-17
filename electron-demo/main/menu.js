@@ -1,10 +1,29 @@
-const { Menu } = require('electron')
+const { Menu ,BrowserWindow} = require('electron')
+
 
 var template = [
     {
         label:'凤来怡洗浴会所',
         submenu:[
-            {label:'精品SPA'},
+            {
+                label:'精品SPA',
+                //快捷键打开窗口
+                accelerator:'ctrl+n',
+                //主要代码--------------start
+                click:()=>{
+                    win = new BrowserWindow({
+                        width:500,
+                        height:500,
+                        webPreferences:{ nodeIntegration:true}
+                    })
+                    win.loadFile('yellow.html')
+                    win.on('closed',()=>{
+                        win = null
+                    })
+
+                }
+                //主要代码----------------end
+            },
             {label:'泰式按摩'}
         ]
 
