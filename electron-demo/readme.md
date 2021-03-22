@@ -55,3 +55,30 @@ npx electron -v
 > 使用shell在浏览器打开,而不是electron内置浏览器打开
 
 ```shell.openExternal()```
+
+> electron中嵌入网页和打卡子窗口
+
+1. BrowserView来嵌入一个网页到我们应用中，这很类似Web中的<iframe>标签。需要注意的是BrowserView是主进程中的类，所以只能在主进程中使用。
+
+2. 用window.open打开子窗口
+
+> window.opener.postMessage(message,targetOrigin),是将消息发送给指定来源的父窗口，如果未指定来源则发送给*，即所有窗口。
+
+1. message : 传递的消息，是String类型的值,targetOrigin : 指定发送的窗口
+
+2. 在传递消息时，你需要在子窗口的页面中设置一些内容，所以我们不能使用远程的页面，而需要自己建立一个。在项目根目录，建立一个popup_page.html文件。 代码如下(详细解释在视频中讲解)
+
+3. 父窗口接收信息需要通过window.addEventListener
+<!-- ![](./images/img01.png) -->
+
+> 选择文件对话框
+
+- 打开文件选择对话框可以使用dialog.showOpenDialog()方法来打开，它有两个参数，一个是设置基本属性，另一个是回调函数，如果是异步可以使用then来实现。
+
+    title ： String (可选)，对话框的标题
+    defaultPath ： String (可选),默认打开的路径
+    buttonLabel ： String (可选), 确认按钮的自定义标签，当为空时，将使用默认标签
+    filters ： 文件选择过滤器，定义后可以对文件扩展名进行筛选
+    properties：打开文件的属性，比如打开文件还是打开文件夹，甚至是隐藏文件。
+
+
