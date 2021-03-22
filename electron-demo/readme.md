@@ -109,4 +109,55 @@ npx electron -v
       }
 
   ```
->  
+>  注册快捷键
+
+- globalShortcut是主进程中的模块，而且注册的都是全局的快捷键，所以你尽量写在main.js中。打开main.js，然后先引入globalShortcut，代码如下：
+
+    ```
+    var  globalShortcut = electron.globalShortcut
+
+    ```
+
+-  引入后，我们现在的需求是按快捷键ctrl+e键后，打开我的博客https://jspang.com。这时候使用globalShortcut.register方法就可以实现，全部代码如下:
+
+```
+var electron = require('electron') 
+
+var app = electron.app   
+var  globalShortcut = electron.globalShortcut
+
+var BrowserWindow = electron.BrowserWindow;  
+
+var mainWindow = null ;  
+app.on('ready',()=>{
+    mainWindow = new BrowserWindow({width:800,height:600})  
+
+    globalShortcut.register('ctrl+e',()=>{
+
+        mainWindow.loadURL('https://jspang.com')  
+    })
+
+    let isRegister= globalShortcut.isRegistered('ctrl+e')?'Register Success':'Register fail'
+
+    console.log('------->'+isRegister)
+
+
+
+    mainWindow.loadFile('test.html')  
+
+    //监听关闭事件，把主窗口设置为null
+    mainWindow.on('closed',()=>{
+        mainWindow = null
+    })
+
+})
+
+app.on('will-quit',function(){
+    //注销全局快捷键的监听
+    globalShortcut.unregister('ctrl+e')
+    globalShortcut.unregisterAll()
+
+})
+```
+
+- 注意关闭后注销ctrl+e
