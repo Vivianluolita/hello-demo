@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="openBtn">打开文件</button>
+    <button id="saveBtn">保存文件</button>
+    <img id="images"  style="width:100%" />
+</body>
+
+<script>
+    const fs = require('fs')
+    const {dialog} = require('electron').remote
+    var openBtn = document.getElementById('openBtn');
+    openBtn.onclick = function(){
+        dialog.showOpenDialog({
+            title:'请选择你喜欢的小姐姐照片',
+            defaultPath:'xiaojiejie.jpg',
+            filters:[{name:'jpg',extensions:['jpg']}]
+        }).then(result=>{
+          //回调函数如何获得图片路径
+            let image = document.getElementById('images')
+            image.setAttribute("src",result.filePaths[0]);
+            console.log(result)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
+    var saveBtn = document.getElementById('saveBtn')
+    // saveBtn.onclick = function(){
+    //     dialog.showSaveDialog({
+    //         title:'保存文件',
+
+    //     }).then(result=>{
+    //         console.log(result)
+    //     }).catch(err=>{
+    //         console.log(err)
+    //     })
+    // }
+    saveBtn.onclick = function(){
+        dialog.showSaveDialog({
+            title:'保存文件',
+        }).then(result=>{
+            console.log(result.filePath)
+            fs.writeFileSync(result.filePath,'技术胖一个前端爱好者')
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+</script>
+
+</html>
