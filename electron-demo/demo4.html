@@ -9,6 +9,7 @@
 <body>
     <button id="openBtn">打开文件</button>
     <button id="saveBtn">保存文件</button>
+    <button id="messageBtn">弹出对话框</button>
     <img id="images"  style="width:100%" />
 </body>
 
@@ -50,6 +51,17 @@
             fs.writeFileSync(result.filePath,'技术胖一个前端爱好者')
         }).catch(err=>{
             console.log(err)
+        })
+    }
+    var messageBtn = document.getElementById('messageBtn')
+    messageBtn.onclick = function(){
+        dialog.showMessageBox({
+            type:'warning',
+            title:'去不去由你',
+            message:'是不是要跟胖哥去红袖招?',
+            buttons:['我要去','不去了']
+        }).then(result=>{
+            console.log(result)
         })
     }
 </script>

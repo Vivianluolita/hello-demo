@@ -81,4 +81,32 @@ npx electron -v
     filters ： 文件选择过滤器，定义后可以对文件扩展名进行筛选
     properties：打开文件的属性，比如打开文件还是打开文件夹，甚至是隐藏文件。
 
+ -   保存对话框 
 
+> 弹出对话框,  dialog.showMessageBox
+
+- 为什么会鼓励使用showMessageBox，因为这样比JS里的alert更加灵活,比如可以设置按钮，可以设置title。
+
+> 断网检测
+
+- 其实这个是JavaScript的一种方式进行监听网络状态,监听的事件分别是online和offline。
+
+    online : 如果链接上网络，就会触发该事件。
+    offline : 如果突然断网了，就会触发该事件。
+
+> 点击按钮window弹出提示消息
+
+  ```
+  var notifyBtn = document.getElementById('notifyBtn');
+
+      var option = {
+          title:'小二,来订单了，出来接客了!',
+          body:'有大官人刚翻了你的牌子',
+
+      }
+      notifyBtn.onclick = function(){
+        new  window.Notification(option.title,option)
+      }
+
+  ```
+>  
