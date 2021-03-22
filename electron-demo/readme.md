@@ -161,3 +161,29 @@ app.on('will-quit',function(){
 ```
 
 - 注意关闭后注销ctrl+e
+
+> 在开发中我们经常会遇到给用户一个激活码，然后让用户复制粘贴的情况，这时候就需要用到clipboard模块，也就是我们的剪贴板模块。
+
+```
+<script>
+    const {clipboard} = require('electron')
+
+    const code = document.getElementById('code')
+    const btn = document.getElementById('btn')
+    btn.onclick = function(){
+        clipboard.writeText(code.innerHTML)
+        alert('复制成功')
+    }
+
+</script>
+```
+
+> 如果提示你的require没找到，记得在main.js中加入这句话
+
+    ```
+    mainWindow = new BrowserWindow({
+        width:800,
+        height:600,
+        webPreferences:{ nodeIntegration:true}
+    })
+    ```

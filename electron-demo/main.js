@@ -7,7 +7,7 @@ var BrowserWindow = electron.BrowserWindow;
 
 var mainWindow = null ;  
 app.on('ready',()=>{
-    mainWindow = new BrowserWindow({width:800,height:600})  
+    mainWindow = new BrowserWindow({width:800,height:600,webPreferences:{ nodeIntegration:true}})  
 
     globalShortcut.register('ctrl+e',()=>{
 
@@ -20,7 +20,7 @@ app.on('ready',()=>{
 
 
 
-    mainWindow.loadFile('test.html')  
+    mainWindow.loadFile('demo7.html')  
 
     //监听关闭事件，把主窗口设置为null
     mainWindow.on('closed',()=>{
